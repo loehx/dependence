@@ -42,6 +42,7 @@ module.exports = function(dirName, fileName) {
 
 ```js
 var dependencies = require('dependence')();
+var assert = require('assert');
 
 dependencies.register('level', 1);
 
@@ -58,6 +59,7 @@ dependencies.resolve(function(nextLevel) {
 
 ```js
 var dependencies = require('dependence')();
+var assert = require('assert');
 
 var i = 0;
 function counterDependecy() {
