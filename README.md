@@ -15,17 +15,17 @@ $ npm install dependence --save
 * **Faster code producing** by simply require dependencies in the constuctor parameter list.
 * **Better unit testing** by easily mockup dependencies.
 
-Example:
+Example using `dependence`:
 
 ```js
-// Requires the standard modules: 'fs' and 'path' automatically
+// Resolves the standard modules 'fs' and 'path' automatically
 module.exports = function(fs, path) {
 	return function(dirName, fileName) {
       return fs.readFileSync(path.join(dirName, fileName));
    }
 };
 ```
-Compared to:
+Default way:
 ```js
 // No way to mock up those modules ...
 var fs = require('fs');
@@ -91,12 +91,12 @@ var dependencies = require('dependence')({
 });
 ```
 
-equals `node: false`
+This equals `node: false` ...
 ```js
 var dependencies = require('dependence')(false);
 ```
 
-equals `src: __dirname + "/lib/**/*.js"`
+Following equals `src: __dirname + "/lib/**/*.js"` ...
 ```js
 var dependencies = require('dependence')(__dirname + "/lib/*.js");
 ```
