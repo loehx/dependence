@@ -1,7 +1,7 @@
 {
   "name": "dependence",
-  "version": "1.0.0",
-  "description": "Dependency injection brought to node.js. Powerful and easy-to-use",
+  "version": "1.0.1",
+  "description": "Dependency injection brought to node.js. Powerful and easy-to-use.",
   "homepage": "https://github.com/loehx/dependence.git",
   "repository": {
     "type": "git",
