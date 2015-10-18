@@ -38,6 +38,7 @@ describe('Dependencies', function() {
 
 	it("Should add a static dependency and resolve it", function(done) {
 		var i = 0;
+
 		function counter() {
 			return ++i;
 		}
@@ -58,6 +59,7 @@ describe('Dependencies', function() {
 
 	it("Should add a dynamic dependency and resolve it", function(done) {
 		var i = 0;
+
 		function counter() {
 			return ++i;
 		}
@@ -142,6 +144,7 @@ describe('Dependencies', function() {
 			done();
 		})
 	});
+
 });
 
 

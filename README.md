@@ -81,17 +81,19 @@ dependencies.resolve(function(counter) {
 
 ### Options
 
+* `shared (default: true)` - Defines the default value for sharing dependencies. Each dependency can overwrite this value by setting its own 'shared' attriute.
 * `node (default: true)` - Set whether `dependence` should automatically try to require node modules if no dependency was found or not.
 * `src (default: undefined)` - Creates a dependency provider that returns dependencies of .js files on the fly.
 
 ```js
 var dependencies = require('dependence')({
+	shared: false, // default: true
    node: false, // default: true
    src: __dirname + "/lib/**/*.js" // default: null
 });
 ```
 
-This equals `node: false` ...
+This equals `shared: false` ...
 ```js
 var dependencies = require('dependence')(false);
 ```
