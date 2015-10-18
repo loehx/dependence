@@ -94,6 +94,47 @@ describe('Dependencies', function() {
 	});
 
 
+	it("Should resolve explicitly required modules.", function(done) {
+
+		dependencies.register("Who is there?", "John");
+
+		function talkToJohn(whoIsThere) {
+			assert.equal(whoIsThere, "John");
+			done();
+		};
+
+		talkToJohn.require = ['Who is there?'];
+
+		dependencies.resolve(talkToJohn);
+	});
+
+
+	it("Should resolve a explicitly required modules (extended).", function(done) {
+
+		dependencies.register('hello-world', function() {
+			return "Hello world"
+		});
+
+		function sayHelloWorld(helloWorld) {
+			return function() {
+				return "John says: " + helloWorld
+			}
+		}
+		sayHelloWorld.require = ['hello-world'];
+
+		dependencies.register('sayHelloWorld', sayHelloWorld);
+
+		dependencies.resolve(function(sayHelloWorld) {
+			assert(sayHelloWorld, "Dependency was not resolved!");
+			assert.equal(typeof sayHelloWorld, 'function');
+			assert.equal(sayHelloWorld(), "John says: Hello world");
+			done();
+		});
+	});
+
+
+
+
 	it("Should resolve a dependency that needs to be resolved itself", function(done) {
 		dependencies.register('level', 1);
 		dependencies.register('nextLevel', function(level) {

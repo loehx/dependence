@@ -1,4 +1,4 @@
-# dependence [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# dependence [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 `dependence` brings dependency injection to node.js.
 
@@ -78,6 +78,23 @@ dependencies.resolve(function(counter) {
 });
 ```
 
+### Require explicitly
+
+```js
+var dependencies = require('dependence')();
+var assert = require('assert');
+
+dependencies.register("Who is there?", "John");
+
+function talkToJohn(whoIsThere) {
+	assert.equal(whoIsThere, "John");
+	done();
+};
+
+talkToJohn.require = ['Who is there?'];
+
+dependencies.resolve(talkToJohn);
+```
 
 ### Options
 
@@ -88,7 +105,7 @@ dependencies.resolve(function(counter) {
 ```js
 var dependencies = require('dependence')({
 	shared: false, // default: true
-   node: false, // default: true
+   node: true, // default: true
    src: __dirname + "/lib/**/*.js" // default: null
 });
 ```
@@ -109,6 +126,14 @@ module.exports = function(level) {
 	return level + 1;
 };
 ```
+
+You can also write this angular style:
+```js
+module.exports = ['level', function(level) {
+	return level + 1;
+}];
+```
+
 
 ## License
 
