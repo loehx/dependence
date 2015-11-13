@@ -10,7 +10,7 @@ var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
 
 gulp.task('nsp', function(cb) {
-	nsp('package.json', cb);
+	nsp({package: __dirname + '/package.json'}, cb);
 });
 
 gulp.task('pre-test', function() {
